@@ -21,7 +21,7 @@ public class BaseTest {
     @BeforeMethod(description = "Opening Chrome Driver")
     public void setup(ITestContext context) {
 
-        System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "src/test/resources/webdrivers/chromedriver.exe");
         String variable = "driver";
 
         try {
