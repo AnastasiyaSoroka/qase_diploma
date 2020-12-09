@@ -49,6 +49,7 @@ workflows:
   periodical:
     triggers:
       - schedule:
+          cron: "1 4,8,12 * * *"
           filters:
             branches:
               only:
