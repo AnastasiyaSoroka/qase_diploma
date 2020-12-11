@@ -16,7 +16,7 @@ public class LoginPage extends BasePage {
     private final By LOGIN_BUTTON = By.id("btnLogin");
     private final By ERROR = By.cssSelector("form-control-feedback");
 
-    private String endpoint = "login";
+    private static final String endpoint = "login";
 
     public LoginPage(WebDriver driver) {
         super(driver);
@@ -36,6 +36,17 @@ public class LoginPage extends BasePage {
     public LoginPage openPage() {
         log.info("Login page URL is " + URL + endpoint);
         driver.get(URL + endpoint);
+        return this;
+    }
+
+    @Step("Trying to log in with the following parameters:")
+    public LoginPage attemptLogin(String username, String password) {
+        log.info("Populating Username with: " + username);
+        driver.findElement(EMAIL_INPUT).sendKeys(username);
+        log.info("Populating Password with: " + password);
+        driver.findElement(PASSWORD_INPUT).sendKeys(password);
+        log.info("Clicking on Login button" );
+        driver.findElement(LOGIN_BUTTON).click();
         return this;
     }
 }

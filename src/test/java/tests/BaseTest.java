@@ -9,7 +9,9 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
 import pages.LoginPage;
+import pages.ProjectsListPage;
 import utils.CapabilitiesGenerator;
+import utils.PropertyReader;
 import utils.TestListener;
 
 @Log4j2
@@ -17,11 +19,14 @@ import utils.TestListener;
 public class BaseTest {
     private WebDriver driver;
     LoginPage loginPage;
+    ProjectsListPage projectsListPage;
+
+    public static final String USERNAME = System.getenv().getOrDefault("username", PropertyReader.getProperty("username"));
+    public static final String PASSWORD = System.getenv().getOrDefault("password",PropertyReader.getProperty("password"));
 
     @BeforeMethod(description = "Opening Chrome Driver")
     public void setup(ITestContext context) {
 
-        System.setProperty("webdriver.chrome.driver", "src/test/resources/webdrivers/chromedriver.exe");
         String variable = "driver";
 
         try {
@@ -32,6 +37,7 @@ public class BaseTest {
 
         driver.manage().window().maximize();
         loginPage = new LoginPage(driver);
+        projectsListPage = new ProjectsListPage(driver);
 
         log.info("Setting driver into context with variable name " + variable);
         context.setAttribute(variable, driver);

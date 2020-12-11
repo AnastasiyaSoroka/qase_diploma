@@ -8,6 +8,9 @@ public class LoginTest extends BaseTest {
     public void checkErrorWithIncorrectPassword() {
        loginPage
                .openPage()
-               .isPageOpened();
+               .isPageOpened()
+               .attemptLogin(USERNAME, PASSWORD);
+
+       projectsListPage.isPageOpened();
     }
 }
