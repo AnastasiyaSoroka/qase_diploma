@@ -21,6 +21,7 @@ public class TestListener implements ITestListener {
 
     @Override
     public void onTestSuccess(ITestResult iTestResult) {
+        takeScreenshot(iTestResult);
         log.info(String.format("==================== FINISHED TEST %s Duration: %ss ====================", iTestResult.getName(),
                 getExecutionTime(iTestResult)));
     }

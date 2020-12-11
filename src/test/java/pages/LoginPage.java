@@ -6,7 +6,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import utils.AllureUtils;
 
 @Log4j2
 public class LoginPage extends BasePage {
@@ -22,14 +21,12 @@ public class LoginPage extends BasePage {
         super(driver);
     }
 
-    @Step("Login page was opened")
     public LoginPage isPageOpened() {
         try {
             wait.until(ExpectedConditions.visibilityOfElementLocated(LOGIN_BUTTON));
         } catch (TimeoutException ex) {
             log.fatal("Login Page is not opened. Failed with " + ex.getMessage());
         }
-        AllureUtils.takeScreenshot(driver);
         return this;
     }
 
@@ -39,13 +36,9 @@ public class LoginPage extends BasePage {
         return this;
     }
 
-    @Step("Trying to log in with the following parameters:")
     public LoginPage attemptLogin(String username, String password) {
-        log.info("Populating Username with: " + username);
         driver.findElement(EMAIL_INPUT).sendKeys(username);
-        log.info("Populating Password with: " + password);
         driver.findElement(PASSWORD_INPUT).sendKeys(password);
-        log.info("Clicking on Login button");
         driver.findElement(LOGIN_BUTTON).click();
         return this;
     }
@@ -54,10 +47,8 @@ public class LoginPage extends BasePage {
         wait.until(ExpectedConditions.visibilityOfElementLocated(ERROR));
     }
 
-    @Step("Error appears")
     public String getErrorText() {
         isErrorAppears();
-        AllureUtils.takeScreenshot(driver);
         log.info("The following error appears: " + driver.findElement(ERROR).getText());
         return driver.findElement(ERROR).getText();
     }

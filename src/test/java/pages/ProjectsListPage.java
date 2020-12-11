@@ -6,7 +6,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import utils.AllureUtils;
 
 @Log4j2
 public class ProjectsListPage extends BasePage {
@@ -24,7 +23,6 @@ public class ProjectsListPage extends BasePage {
         } catch (TimeoutException ex) {
             log.fatal("Login Page is not opened. Failed with " + ex.getMessage());
         }
-        AllureUtils.takeScreenshot(driver);
         return this;
     }
 
