@@ -29,8 +29,8 @@ public class ProjectsListPage extends BasePage {
     }
 
     public ProjectsListPage openPage() {
-        log.info("Projects page URL is " + URL + endpoint);
-        driver.get(URL + endpoint);
+        log.info("Projects page URL is " + URLAPP + endpoint);
+        driver.get(URLAPP + endpoint);
         return this;
     }
 

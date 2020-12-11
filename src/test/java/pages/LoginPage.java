@@ -14,7 +14,7 @@ public class LoginPage extends BasePage {
     private final By EMAIL_INPUT = By.id("inputEmail");
     private final By PASSWORD_INPUT = By.id("inputPassword");
     private final By LOGIN_BUTTON = By.id("btnLogin");
-    private final By ERROR = By.cssSelector("form-control-feedback");
+    private final By ERROR = By.cssSelector(".form-control-feedback");
 
     private static final String endpoint = "login";
 
@@ -34,8 +34,8 @@ public class LoginPage extends BasePage {
     }
 
     public LoginPage openPage() {
-        log.info("Login page URL is " + URL + endpoint);
-        driver.get(URL + endpoint);
+        log.info("Login page URL is " + URLAPP + endpoint);
+        driver.get(URLAPP + endpoint);
         return this;
     }
 
@@ -45,8 +45,20 @@ public class LoginPage extends BasePage {
         driver.findElement(EMAIL_INPUT).sendKeys(username);
         log.info("Populating Password with: " + password);
         driver.findElement(PASSWORD_INPUT).sendKeys(password);
-        log.info("Clicking on Login button" );
+        log.info("Clicking on Login button");
         driver.findElement(LOGIN_BUTTON).click();
         return this;
+    }
+
+    public void isErrorAppears() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(ERROR));
+    }
+
+    @Step("Error appears")
+    public String getErrorText() {
+        isErrorAppears();
+        AllureUtils.takeScreenshot(driver);
+        log.info("The following error appears: " + driver.findElement(ERROR).getText());
+        return driver.findElement(ERROR).getText();
     }
 }

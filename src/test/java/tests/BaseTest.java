@@ -22,7 +22,7 @@ public class BaseTest {
     ProjectsListPage projectsListPage;
 
     public static final String USERNAME = System.getenv().getOrDefault("username", PropertyReader.getProperty("username"));
-    public static final String PASSWORD = System.getenv().getOrDefault("password",PropertyReader.getProperty("password"));
+    public static final String PASSWORD = System.getenv().getOrDefault("password", PropertyReader.getProperty("password"));
 
     @BeforeMethod(description = "Opening Chrome Driver")
     public void setup(ITestContext context) {

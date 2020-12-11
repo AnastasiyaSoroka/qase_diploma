@@ -10,7 +10,7 @@ abstract class BasePage {
     WebDriver driver;
     WebDriverWait wait;
 
-    public static final String URL = "https://app.qase.io/";
+    public static final String  URLAPP = System.getenv().getOrDefault("urlApp", PropertyReader.getProperty("urlApp"));
 
     public BasePage(WebDriver driver) {
         this.driver = driver;
