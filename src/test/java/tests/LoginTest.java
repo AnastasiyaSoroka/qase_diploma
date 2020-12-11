@@ -8,7 +8,7 @@ public class LoginTest extends BaseTest {
 
     @DataProvider(name = "incorrectLoginData")
     public Object[][] incorrectLoginData() {
-        return new Object[][]{{USERNAME, "sdfsdf"}, {"asdasd@mail", PASSWORD}, {"", ""}};
+        return new Object[][]{{USERNAME, "sdfsdf"}, {"asdasd@mail", PASSWORD}};
     }
 
     @Test(description = "Check Error message with incorrect credentials", dataProvider = "incorrectLoginData")
