@@ -11,6 +11,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 public class ProjectsListPage extends BasePage {
     private final By CREATE_BUTTON = By.id("createButton");
     private static final String endpoint = "projects";
+    private static final String projectLocator = "//*[@class='project-row']//*[contains(text(),'%s')]";
 
     public ProjectsListPage(WebDriver driver) {
         super(driver);
@@ -21,7 +22,7 @@ public class ProjectsListPage extends BasePage {
         try {
             wait.until(ExpectedConditions.visibilityOfElementLocated(CREATE_BUTTON));
         } catch (TimeoutException ex) {
-            log.fatal("Login Page is not opened. Failed with " + ex.getMessage());
+            log.fatal("Projects Page is not opened. Failed with " + ex.getMessage());
         }
         return this;
     }
@@ -30,6 +31,16 @@ public class ProjectsListPage extends BasePage {
         log.info("Projects page URL is " + URLAPP + endpoint);
         driver.get(URLAPP + endpoint);
         return this;
+    }
+
+    public ProjectsListPage clickCreateNewProject() {
+        driver.findElement(CREATE_BUTTON).click();
+        return this;
+    }
+
+    public String getProjectNameText(String name) {
+        isElementDisplayed(By.xpath(String.format(projectLocator,name)));
+        return driver.findElement(By.xpath(String.format(projectLocator,name))).getText();
     }
 
 }
