@@ -2,7 +2,7 @@ package steps;
 
 import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
-import models.NewProject;
+import models.Project;
 import org.openqa.selenium.WebDriver;
 import pages.ProjectsListPage;
 
@@ -27,7 +27,7 @@ public class ProjectsSteps {
     }
 
     @Step("Verify that new project exists on Projects page")
-    public String getProjectName(NewProject model) {
+    public String getProjectName(Project model) {
         return projectsListPage.getProjectNameText(model.getTitle());
     }
 
