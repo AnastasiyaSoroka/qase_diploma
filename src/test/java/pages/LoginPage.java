@@ -1,6 +1,5 @@
 package pages;
 
-import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
@@ -22,11 +21,7 @@ public class LoginPage extends BasePage {
     }
 
     public LoginPage isPageOpened() {
-        try {
-            wait.until(ExpectedConditions.visibilityOfElementLocated(LOGIN_BUTTON));
-        } catch (TimeoutException ex) {
-            log.fatal("Login Page is not opened. Failed with " + ex.getMessage());
-        }
+        wait.until(ExpectedConditions.visibilityOfElementLocated(LOGIN_BUTTON));
         return this;
     }
 
@@ -43,12 +38,8 @@ public class LoginPage extends BasePage {
         return this;
     }
 
-    public void isErrorAppears() {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(ERROR));
-    }
-
     public String getErrorText() {
-        isErrorAppears();
+        isElementDisplayed(ERROR);
         log.info("The following error appears: " + driver.findElement(ERROR).getText());
         return driver.findElement(ERROR).getText();
     }
