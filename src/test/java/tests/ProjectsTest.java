@@ -1,6 +1,6 @@
 package tests;
 
-import models.NewProjectUI;
+import models.NewProject;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -14,7 +14,7 @@ public class ProjectsTest extends BaseTest {
     @Test(description = "Verify that New project was created and was added to the Projects page")
     public void checkNewProjectIsOnProjectsPage() {
 
-        NewProjectUI model = NewProjectUI.builder()
+        NewProject model = NewProject.builder()
                 .title(name + random.nextInt(1000))
                 .code(name + random.nextInt(1000))
                 .description(name + random.nextInt(1000))
@@ -29,7 +29,7 @@ public class ProjectsTest extends BaseTest {
 
     @Test(description = "Verify that New project was created")
     public void checkNewProjectCreated() {
-        NewProjectUI model = NewProjectUI.builder()
+        NewProject model = NewProject.builder()
                 .title(name + random.nextInt(1000))
                 .code(name + random.nextInt(1000))
                 .description(name + random.nextInt(1000))
@@ -43,7 +43,7 @@ public class ProjectsTest extends BaseTest {
 
     @Test(description = "Verify that Code value cant be shorter than 2 characters")
     public void checkErrorWithShortCode() {
-        NewProjectUI model = NewProjectUI.builder()
+        NewProject model = NewProject.builder()
                 .title(name + random.nextInt(1000))
                 .code("e")
                 .description(name + random.nextInt(1000))
@@ -58,13 +58,13 @@ public class ProjectsTest extends BaseTest {
     @Test(description = "Verify that a project with the Code used in another project cant be created")
     public void checkErrorWithTheSameCode() {
         String code = "code";
-        NewProjectUI project1 = NewProjectUI.builder()
+        NewProject project1 = NewProject.builder()
                 .title(name + random.nextInt(1000))
                 .code(code)
                 .description(name + random.nextInt(1000))
                 .build();
 
-        NewProjectUI project2 = NewProjectUI.builder()
+        NewProject project2 = NewProject.builder()
                 .title(name + random.nextInt(1000))
                 .code(code)
                 .description(name + random.nextInt(1000))

@@ -19,11 +19,7 @@ public class ProjectsListPage extends BasePage {
 
     @Step("Projects List page was opened")
     public ProjectsListPage isPageOpened() {
-        try {
-            wait.until(ExpectedConditions.visibilityOfElementLocated(CREATE_BUTTON));
-        } catch (TimeoutException ex) {
-            log.fatal("Projects Page is not opened. Failed with " + ex.getMessage());
-        }
+        wait.until(ExpectedConditions.visibilityOfElementLocated(CREATE_BUTTON));
         return this;
     }
 
@@ -39,8 +35,8 @@ public class ProjectsListPage extends BasePage {
     }
 
     public String getProjectNameText(String name) {
-        isElementDisplayed(By.xpath(String.format(projectLocator,name)));
-        return driver.findElement(By.xpath(String.format(projectLocator,name))).getText();
+        isElementDisplayed(By.xpath(String.format(projectLocator, name)));
+        return driver.findElement(By.xpath(String.format(projectLocator, name))).getText();
     }
 
 }

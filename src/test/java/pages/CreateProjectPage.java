@@ -3,9 +3,8 @@ package pages;
 import elements.Input;
 import elements.Textarea;
 import lombok.extern.log4j.Log4j2;
-import models.NewProjectUI;
+import models.NewProject;
 import org.openqa.selenium.By;
-import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
@@ -26,11 +25,7 @@ public class CreateProjectPage extends BasePage {
     }
 
     public CreateProjectPage isPageOpened() {
-        try {
-            wait.until(ExpectedConditions.visibilityOfElementLocated(SUBMIT_BUTTON));
-        } catch (TimeoutException ex) {
-            log.fatal("New Project Page is not opened. Failed with " + ex.getMessage());
-        }
+        wait.until(ExpectedConditions.visibilityOfElementLocated(SUBMIT_BUTTON));
         return this;
     }
 
@@ -40,7 +35,7 @@ public class CreateProjectPage extends BasePage {
         return this;
     }
 
-    public CreateProjectPage populateForm(NewProjectUI model) {
+    public CreateProjectPage populateForm(NewProject model) {
         setProjectTitle(model.getTitle());
         setProjectCode(model.getCode());
         setProjectDescription(model.getDescription());

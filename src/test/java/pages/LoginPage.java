@@ -21,11 +21,7 @@ public class LoginPage extends BasePage {
     }
 
     public LoginPage isPageOpened() {
-        try {
-            wait.until(ExpectedConditions.visibilityOfElementLocated(LOGIN_BUTTON));
-        } catch (TimeoutException ex) {
-            log.fatal("Login Page is not opened. Failed with " + ex.getMessage());
-        }
+        wait.until(ExpectedConditions.visibilityOfElementLocated(LOGIN_BUTTON));
         return this;
     }
 

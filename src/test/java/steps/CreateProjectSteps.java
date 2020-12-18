@@ -2,7 +2,7 @@ package steps;
 
 import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
-import models.NewProjectUI;
+import models.NewProject;
 import org.openqa.selenium.WebDriver;
 import pages.CreateProjectPage;
 
@@ -15,19 +15,19 @@ public class CreateProjectSteps {
     }
 
     @Step("Populating Create New Project form with name, code and description")
-    public CreateProjectSteps populateNewProjectFormFull(NewProjectUI model) {
+    public CreateProjectSteps populateNewProjectFormFull(NewProject model) {
         createProjectPage.isPageOpened().populateForm(model);
         return this;
     }
 
     @Step("Checking error message with short code value")
-    public String checkShortCodeMessage(NewProjectUI model) {
+    public String checkShortCodeMessage(NewProject model) {
         log.info(String.format("Short code is '%s'", model.getCode()));
         return createProjectPage.getErrorText();
     }
 
     @Step("Checking error message with short code value")
-    public String checkSameCodeMessage(NewProjectUI model) {
+    public String checkSameCodeMessage(NewProject model) {
         log.info(String.format("Code is '%s'", model.getCode()));
         return createProjectPage.getAlertText();
     }

@@ -19,11 +19,7 @@ public class ProjectPage extends BasePage {
     }
 
     public ProjectPage isPageOpened() {
-        try {
-            wait.until(ExpectedConditions.visibilityOfElementLocated(CREATE_SUITE_BUTTON));
-        } catch (TimeoutException ex) {
-            log.fatal("Project Page is not opened. Failed with " + ex.getMessage());
-        }
+        wait.until(ExpectedConditions.visibilityOfElementLocated(CREATE_SUITE_BUTTON));
         return this;
     }
 
