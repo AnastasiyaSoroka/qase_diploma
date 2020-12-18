@@ -1,7 +1,6 @@
 package pages;
 
 import elements.Input;
-import elements.Textarea;
 import lombok.extern.log4j.Log4j2;
 import models.NewProject;
 import org.openqa.selenium.By;
@@ -59,7 +58,7 @@ public class CreateProjectPage extends BasePage {
     }
 
     public CreateProjectPage setProjectDescription(String description) {
-        new Textarea(driver, "Description", DESCRIPTION_INPUT).write(description);
+        new Input(driver, "Description", DESCRIPTION_INPUT).write(description);
         return this;
     }
 
