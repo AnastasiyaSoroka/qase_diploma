@@ -8,12 +8,13 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 @Log4j2
 public class ProjectPage extends BasePage {
 
-    private static final By PROJECT_LABEL = By.className("header");
-    private static final By CODE_LABEL = By.className("subheader");
+    private static final By PROJECT_LABEL = By.cssSelector(".header");
+    private static final By CODE_LABEL = By.cssSelector(".subheader");
     private static final By CREATE_SUITE_BUTTON = By.xpath("//*[contains(text(), 'Create new suite')]");
     private static final By CREATE_CASE_BUTTON = By.xpath("//*[contains(text(), 'Create new case')]");
     private static final String caseLocator = "//*[@class='case-row']//*[contains(text(),'%s')]";
     private static final String suiteLocator = "//*[@class='suite-header'][contains(text(),'%s')]";
+    private static final String endpoint = "project/create";
 
     public ProjectPage(WebDriver driver) {
         super(driver);
@@ -25,6 +26,8 @@ public class ProjectPage extends BasePage {
     }
 
     public ProjectPage openPage() {
+        log.info("Project page URL is " + URLAPP + endpoint);
+        driver.get(URLAPP + endpoint);
         return this;
     }
 

@@ -13,7 +13,8 @@ public class CreateSuitePage extends BasePage {
 
     private final By SAVE_BUTTON = By.id("saveButton");
     private final By SUITE_NAME_INPUT = By.id("inputTitle");
-    private final String span_locator = "//label[text()='%s']//following-sibling::*//span[@role]";
+    private static final String endpointPattern = "suite/%s/create";
+    public static String endpoint;
 
     public CreateSuitePage(WebDriver driver) {
         super(driver);
@@ -24,7 +25,13 @@ public class CreateSuitePage extends BasePage {
         return this;
     }
 
+    public void setUrl(String code) {
+        endpoint = String.format(endpointPattern, code);
+    }
+
     public CreateSuitePage openPage() {
+        log.info("Create Suite page URL is " + URLAPP + endpoint);
+        driver.get(URLAPP + endpoint);
         return this;
     }
 

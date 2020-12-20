@@ -1,16 +1,21 @@
 package pages;
 
 import elements.Input;
+import elements.InputWithPane;
 import elements.InputWithSearch;
+import lombok.extern.log4j.Log4j2;
 import models.Case;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+@Log4j2
 public class CreateCasePage extends BasePage {
 
     private final By SAVE_BUTTON = By.xpath("//*[text()='Save']");
     private final By CASE_TITLE_INPUT = By.id("title");
+    private static final String endpointPattern = "case/%s/create";
+    public static String endpoint;
 
     public CreateCasePage(WebDriver driver) {
         super(driver);
@@ -21,7 +26,14 @@ public class CreateCasePage extends BasePage {
         return this;
     }
 
+    public void setUrl(String code) {
+        endpoint = String.format(endpointPattern, code);
+    }
+
+
     public CreateCasePage openPage() {
+        log.info("Create Case page URL is " + URLAPP + endpoint);
+        driver.get(URLAPP + endpoint);
         return this;
     }
 
@@ -37,7 +49,7 @@ public class CreateCasePage extends BasePage {
 
     public CreateCasePage populateForm(Case model) {
         setSuiteTitle(model.getTitle());
-        new Input(driver, "Description", null).writeByLocator(model.getDescription());
+        new InputWithPane(driver, "Description").write(model.getDescription());
         new InputWithSearch(driver, "status").selectWithSearch(model.getStatus());
         new InputWithSearch(driver, "severity").selectWithSearch(model.getSeverity());
         new InputWithSearch(driver, "priority").selectWithSearch(model.getPriority());
