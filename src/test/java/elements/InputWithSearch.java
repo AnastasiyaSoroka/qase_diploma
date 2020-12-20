@@ -28,7 +28,7 @@ public class InputWithSearch {
 
     public void waiter(String locator, String text)
     {
-        new WebDriverWait(driver, 30).until(ExpectedConditions.visibilityOfElementLocated(By.xpath(String.format(locator, label))));
+        new WebDriverWait(driver, 30).until(ExpectedConditions.visibilityOfElementLocated(By.xpath(String.format(locator, text))));
 
     }
 }
