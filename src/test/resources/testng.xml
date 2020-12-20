@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="UI Regression Test" parallel="tests" thread-count="5">
+     <test name="projects tests">
+        <classes>
+            <class name="tests.ProjectsTest"/>
+        </classes>
+    </test>
+    <test name="login tests">
+        <classes>
+            <class name="tests.LoginTest"/>
+        </classes>
+    </test>
+    <test name="case tests">
+        <classes>
+            <class name="tests.CaseTest"/>
+        </classes>
+    </test>
+    <test name="suite tests">
+        <classes>
+            <class name="tests.SuiteTest"/>
+        </classes>
+    </test>
+</suite>

@@ -20,6 +20,8 @@ public class BaseTest {
     protected ProjectsSteps projectsSteps;
     protected LoginSteps loginSteps;
     protected CreateProjectSteps createProjectSteps;
+    protected CreateSuiteSteps createSuiteSteps;
+    protected CreateCaseSteps createCaseSteps;
     protected ProjectSteps projectSteps;
 
     public static final String USERNAME = System.getenv().getOrDefault("username", PropertyReader.getProperty("username"));
@@ -40,6 +42,8 @@ public class BaseTest {
         loginSteps = new LoginSteps(driver);
         projectsSteps = new ProjectsSteps(driver);
         createProjectSteps = new CreateProjectSteps(driver);
+        createSuiteSteps = new CreateSuiteSteps(driver);
+        createCaseSteps = new CreateCaseSteps(driver);
         projectSteps = new ProjectSteps(driver);
 
         context.setAttribute(variable, driver);

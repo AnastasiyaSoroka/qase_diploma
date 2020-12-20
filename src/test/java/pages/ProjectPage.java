@@ -8,10 +8,14 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 @Log4j2
 public class ProjectPage extends BasePage {
 
-    public static final By PROJECT_LABEL = By.className("header");
-    public static final By CODE_LABEL = By.className("subheader");
-    public static final By CREATE_SUITE_BUTTON = By.xpath("//*[contains(text(), 'Create new suite')]");
-    public static final By CREATE_CASE_BUTTON = By.xpath("//*[contains(text(), 'Create new case')]");
+    private static final By PROJECT_LABEL = By.cssSelector(".header");
+    private static final By CODE_LABEL = By.cssSelector(".subheader");
+    private static final By CREATE_SUITE_BUTTON = By.xpath("//*[contains(text(), 'Create new suite')]");
+    private static final By CREATE_CASE_BUTTON = By.xpath("//*[contains(text(), 'Create new case')]");
+    private static final String caseLocator = "//*[@class='case-row']//*[contains(text(),'%s')]";
+    private static final String suiteLocator = "//*[@class='suite-header'][contains(text(),'%s')]";
+    private static final String endpointPattern = "project/%s";
+    public static String endpoint;
 
     public ProjectPage(WebDriver driver) {
         super(driver);
@@ -22,7 +26,14 @@ public class ProjectPage extends BasePage {
         return this;
     }
 
+    public ProjectPage setUrl(String code) {
+        endpoint = String.format(endpointPattern, code);
+        return this;
+    }
+
     public ProjectPage openPage() {
+        log.info("Project page URL is " + URLAPP + endpoint);
+        driver.get(URLAPP + endpoint);
         return this;
     }
 
@@ -44,5 +55,15 @@ public class ProjectPage extends BasePage {
         isElementDisplayed(CREATE_CASE_BUTTON);
         driver.findElement(CREATE_CASE_BUTTON).click();
         return this;
+    }
+
+    public String getCaseNameText(String name) {
+        isElementDisplayed(By.xpath(String.format(caseLocator, name)));
+        return driver.findElement(By.xpath(String.format(caseLocator, name))).getText();
+    }
+
+    public String getSuiteNameText(String name) {
+        isElementDisplayed(By.xpath(String.format(suiteLocator, name)));
+        return driver.findElement(By.xpath(String.format(suiteLocator, name))).getText();
     }
 }
