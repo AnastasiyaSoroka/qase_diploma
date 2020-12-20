@@ -8,21 +8,22 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 @Log4j2
-public class Input {
+public class InputWithPane {
     WebDriver driver;
     String label;
-    By locator;
+    String textlocator = "//label[contains(text(),'%s')]/following-sibling::*//p";
 
-    public Input(WebDriver driver, String label, By locator) {
+    public InputWithPane(WebDriver driver, String label) {
         this.driver = driver;
         this.label = label;
-        this.locator = locator;
     }
 
     public void write(String text) {
         log.info(String.format("Writing text '%s' into input with label '%s'", text, label));
-        WebElement element = new WebDriverWait(driver, 30).until(ExpectedConditions.visibilityOfElementLocated(locator));
+        new WebDriverWait(driver, 30).until(ExpectedConditions.visibilityOfElementLocated(By.xpath(String.format(textlocator, label))));
+        WebElement element = driver.findElement(By.xpath(String.format(textlocator, label)));
         element.clear();
         element.sendKeys(text);
     }
+
 }
