@@ -11,22 +11,6 @@ public class ProjectsTest extends BaseTest {
     Random random = new Random();
     String name = "n";
 
-    @Test(description = "Verify that New project was created and was added to the Projects page")
-    public void checkNewProjectIsOnProjectsPage() {
-
-        Project model = Project.builder()
-                .title(name + random.nextInt(1000))
-                .code(name + random.nextInt(1000))
-                .description(name + random.nextInt(1000))
-                .build();
-
-        loginSteps.validLogin(USERNAME, PASSWORD);
-        projectsSteps.clickCreateNewProject();
-        createProjectSteps.populateNewProjectFormFull(model);
-        Assert.assertEquals(projectsSteps.openProjectsPage().getProjectName(model), model.getTitle(), "Project name does not match to expected");
-    }
-
-
     @Test(description = "Verify that New project was created")
     public void checkNewProjectCreated() {
         Project model = Project.builder()
@@ -38,7 +22,7 @@ public class ProjectsTest extends BaseTest {
         loginSteps.validLogin(USERNAME, PASSWORD);
         projectsSteps.clickCreateNewProject();
         createProjectSteps.populateNewProjectFormFull(model);
-        Assert.assertEquals(projectSteps.getProjectName(), model.getTitle(), "Project name does not match to expected");
+        Assert.assertEquals(projectSteps.getProjectName(model.getCode()), model.getTitle(), "Project name does not match to expected");
     }
 
     @Test(description = "Verify that Code value cant be shorter than 2 characters")

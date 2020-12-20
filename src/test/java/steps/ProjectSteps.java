@@ -16,8 +16,8 @@ public class ProjectSteps {
     }
 
     @Step("Verify that project's page was opened")
-    public String getProjectName() {
-        return projectPage.isPageOpened().getProjectNameText();
+    public String getProjectName(String code) {
+        return projectPage.setUrl(code).isPageOpened().getProjectNameText();
     }
 
     @Step("Verify that project's page contains code")

@@ -14,7 +14,8 @@ public class ProjectPage extends BasePage {
     private static final By CREATE_CASE_BUTTON = By.xpath("//*[contains(text(), 'Create new case')]");
     private static final String caseLocator = "//*[@class='case-row']//*[contains(text(),'%s')]";
     private static final String suiteLocator = "//*[@class='suite-header'][contains(text(),'%s')]";
-    private static final String endpoint = "project/create";
+    private static final String endpointPattern = "project/%s";
+    public static String endpoint;
 
     public ProjectPage(WebDriver driver) {
         super(driver);
@@ -22,6 +23,11 @@ public class ProjectPage extends BasePage {
 
     public ProjectPage isPageOpened() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(CREATE_SUITE_BUTTON));
+        return this;
+    }
+
+    public ProjectPage setUrl(String code) {
+        endpoint = String.format(endpointPattern, code);
         return this;
     }
 
