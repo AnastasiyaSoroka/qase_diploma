@@ -20,7 +20,7 @@ public class ProjectTestsApi {
         ValidatableResponse response = baseAdapter.get("v1/project").statusCode(200);
 
         System.out.println(response.extract().body().path("status").toString());
-        System.out.println(response.extract().body().as(ProjectResponse.class).getStatus());
+        System.out.println(response.extract().body().as(ProjectResponse.class).isStatus());
 
         //  Assert.assertTrue(response.extract().body().as(ProjectResponse.class).isStatus(), "Status is not correct");
         //  new BaseAdapter().get("v1/project");
