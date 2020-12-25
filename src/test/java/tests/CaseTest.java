@@ -1,7 +1,7 @@
 package tests;
 
-import models.projects.Case;
-import models.projects.Project;
+import models.Case;
+import models.Project;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;

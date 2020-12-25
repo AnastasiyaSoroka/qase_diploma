@@ -1,6 +1,6 @@
 package tests;
 
-import models.projects.Project;
+import models.Project;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import utils.RandomString;

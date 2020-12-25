@@ -1,6 +1,6 @@
 package tests;
 
-import models.projects.Project;
+import models.Project;
 import models.Suite;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -11,7 +11,7 @@ public class SuiteTest extends BaseTest {
     RandomString randomString = new RandomString();
 
     @Test(description = "Verify that New Suite was created")
-    public void checkNewSuiteCreated() throws InterruptedException {
+    public void checkNewSuiteCreated() {
 
         Project project = Project.builder()
                 .title(randomString.StringRandom(4))
