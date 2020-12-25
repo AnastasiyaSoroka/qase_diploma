@@ -13,7 +13,8 @@ public class ProjectPage extends BasePage {
     private static final By CREATE_SUITE_BUTTON = By.xpath("//*[contains(text(), 'Create new suite')]");
     private static final By CREATE_CASE_BUTTON = By.xpath("//*[contains(text(), 'Create new case')]");
     private static final String caseLocator = "//*[@class='case-row']//*[contains(text(),'%s')]";
-    private static final String suiteLocator = "//*[@class='suite-header'][contains(text(),'%s')]";
+    private static final String suiteLocator = "//*[@class='suite-header-title'][text()='%s']";
+
     private static final String endpointPattern = "project/%s";
     public static String endpoint;
 

@@ -4,7 +4,7 @@ import elements.Input;
 import elements.InputWithPane;
 import elements.InputWithSearch;
 import lombok.extern.log4j.Log4j2;
-import models.Case;
+import models.projects.Case;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;

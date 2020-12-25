@@ -24,6 +24,7 @@ public class BaseTest {
     protected CreateCaseSteps createCaseSteps;
     protected ProjectSteps projectSteps;
 
+
     public static final String USERNAME = System.getenv().getOrDefault("username", PropertyReader.getProperty("username"));
     public static final String PASSWORD = System.getenv().getOrDefault("password", PropertyReader.getProperty("password"));
 
