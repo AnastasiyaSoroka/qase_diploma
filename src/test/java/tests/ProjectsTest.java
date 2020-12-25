@@ -3,20 +3,18 @@ package tests;
 import models.Project;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-
-import java.util.Random;
+import utils.RandomString;
 
 public class ProjectsTest extends BaseTest {
 
-    Random random = new Random();
-    String name = "n";
+    RandomString randomString = new RandomString();
 
     @Test(description = "Verify that New project was created")
     public void checkNewProjectCreated() {
         Project model = Project.builder()
-                .title(name + random.nextInt(1000))
-                .code(name + random.nextInt(1000))
-                .description(name + random.nextInt(1000))
+                .title(randomString.StringRandom(4))
+                .code(randomString.StringRandom(4))
+                .description(randomString.StringRandom(4))
                 .build();
 
         loginSteps.validLogin(USERNAME, PASSWORD);
@@ -28,9 +26,9 @@ public class ProjectsTest extends BaseTest {
     @Test(description = "Verify that Code value cant be shorter than 2 characters")
     public void checkErrorWithShortCode() {
         Project model = Project.builder()
-                .title(name + random.nextInt(1000))
+                .title(randomString.StringRandom(4))
                 .code("e")
-                .description(name + random.nextInt(1000))
+                .description(randomString.StringRandom(4))
                 .build();
 
         loginSteps.validLogin(USERNAME, PASSWORD);
@@ -41,17 +39,17 @@ public class ProjectsTest extends BaseTest {
 
     @Test(description = "Verify that a project with the Code used in another project cant be created")
     public void checkErrorWithTheSameCode() {
-        String code = name + random.nextInt(10);
+        String code = randomString.StringRandom(4);
         Project project1 = Project.builder()
-                .title(name + random.nextInt(1000))
+                .title(randomString.StringRandom(4))
                 .code(code)
-                .description(name + random.nextInt(1000))
+                .description(randomString.StringRandom(4))
                 .build();
 
         Project project2 = Project.builder()
-                .title(name + random.nextInt(1000))
+                .title(randomString.StringRandom(4))
                 .code(code)
-                .description(name + random.nextInt(1000))
+                .description(randomString.StringRandom(4))
                 .build();
 
         loginSteps.validLogin(USERNAME, PASSWORD);

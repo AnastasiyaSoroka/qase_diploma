@@ -11,8 +11,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 @Log4j2
 public class CreateSuitePage extends BasePage {
 
-    private final By SAVE_BUTTON = By.id("saveButton");
-    private final By SUITE_NAME_INPUT = By.id("inputTitle");
+    private final By SAVE_BUTTON = By.xpath("//*[text()='Create']");
+    private final By SUITE_NAME_INPUT = By.id("name");
     private static final String endpointPattern = "suite/%s/create";
     public static String endpoint;
 
@@ -21,7 +21,8 @@ public class CreateSuitePage extends BasePage {
     }
 
     public CreateSuitePage isPageOpened() {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(SAVE_BUTTON));
+        driver.switchTo().activeElement();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(SUITE_NAME_INPUT));
         return this;
     }
 

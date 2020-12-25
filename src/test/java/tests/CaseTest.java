@@ -3,25 +3,35 @@ package tests;
 import models.Case;
 import models.Project;
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
-import java.util.Random;
+import utils.RandomString;
 
 public class CaseTest extends BaseTest {
-    Random random = new Random();
-    String name = "n";
+
+    RandomString randomString = new RandomString();
+
+    Project project;
+    Case caseModel;
+
+    @BeforeMethod(description = "Login and Create new project")
+    public void createNewProject() {
+        project = Project.builder()
+                .title(randomString.StringRandom(4))
+                .code(randomString.StringRandom(4))
+                .description(randomString.StringRandom(4))
+                .build();
+
+        loginSteps.validLogin(USERNAME, PASSWORD);
+        projectsSteps.clickCreateNewProject();
+        createProjectSteps.populateNewProjectFormFull(project);
+        projectSteps.getProjectName(project.getCode());
+    }
 
     @Test(description = "Verify that New Case was created")
     public void checkNewProjectCreated() {
-
-        Project project = Project.builder()
-                .title(name + random.nextInt(1000))
-                .code(name + random.nextInt(1000))
-                .description(name + random.nextInt(1000))
-                .build();
-
-        Case caseModel = Case.builder()
-                .title(name + random.nextInt(1000))
+        caseModel = Case.builder()
+                .title(randomString.StringRandom(4))
                 .status("Actual")
                 .description("asdasdasd dfyg")
                 .severity("Blocker")
@@ -31,9 +41,6 @@ public class CaseTest extends BaseTest {
                 .automation("Automated")
                 .build();
 
-        loginSteps.validLogin(USERNAME, PASSWORD);
-        projectsSteps.clickCreateNewProject();
-        createProjectSteps.populateNewProjectFormFull(project);
         projectSteps.clickCreateNewCase();
         createCaseSteps.populateNewSuiteFormFull(caseModel);
         Assert.assertEquals(projectSteps.getCaseName(caseModel), caseModel.getTitle(), "Case name does not match to expected");
