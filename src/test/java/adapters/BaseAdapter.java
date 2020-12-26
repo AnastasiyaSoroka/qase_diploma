@@ -1,7 +1,6 @@
 package adapters;
 
 import com.google.gson.Gson;
-import io.restassured.response.Response;
 import io.restassured.response.ValidatableResponse;
 import utils.PropertyReader;
 
@@ -26,7 +25,7 @@ public class BaseAdapter {
 
     }
 
-    public Response post(String uri, String body) {
+    public ValidatableResponse post(String uri, String body) {
         return
                 given()
                         .header("Token", token)
@@ -36,20 +35,32 @@ public class BaseAdapter {
                         .when()
                         .post(URLAPI + uri)
                         .then()
-                        .log().all()
-                        .extract()
-                        .response();
+                        .log().all();
     }
 
-    public void delete(String uri) {
-        given()
-                .header("Token", token)
-                .header("Content-Type", "application/json")
-                .log().all()
-                .when()
-                .delete(URLAPI + uri)
-                .then()
-                .log().all();
+    public ValidatableResponse patch(String uri, String body) {
+        return
+                given()
+                        .header("Token", token)
+                        .header("Content-Type", "application/json")
+                        .body(body)
+                        .log().all()
+                        .when()
+                        .patch(URLAPI + uri)
+                        .then()
+                        .log().all();
+    }
+
+    public ValidatableResponse delete(String uri) {
+        return
+                given()
+                        .header("Token", token)
+                        .header("Content-Type", "application/json")
+                        .log().all()
+                        .when()
+                        .delete(URLAPI + uri)
+                        .then()
+                        .log().all();
     }
 
 }
