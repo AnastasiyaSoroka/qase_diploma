@@ -1,6 +1,7 @@
 package models;
 
 import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -10,15 +11,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Project {
+public class ErrorField {
+    @SerializedName("field")
     @Expose
-    private String title;
+    private String field;
+    @SerializedName("error")
     @Expose
-    private String code;
-    @Expose
-    private String description;
-    @Expose
-    private String access;
-    @Expose
-    private Object group;
+    private String error;
 }

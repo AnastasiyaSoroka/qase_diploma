@@ -1,10 +1,12 @@
 package tests;
 
+import io.qameta.allure.Feature;
 import models.Project;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import utils.RandomString;
 
+@Feature("Projects")
 public class ProjectsTest extends BaseTest {
 
     RandomString randomString = new RandomString();

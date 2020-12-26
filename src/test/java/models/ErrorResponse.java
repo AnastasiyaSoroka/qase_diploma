@@ -7,15 +7,20 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Runs {
-    @SerializedName("total")
+public class ErrorResponse {
+    @SerializedName("status")
     @Expose
-    private Integer total;
-    @SerializedName("active")
+    private Boolean status;
+    @SerializedName("errorMessage")
     @Expose
-    private Integer active;
+    private String errorMessage;
+    @SerializedName("errorFields")
+    @Expose
+    private List<ErrorField> errorFields = null;
 }

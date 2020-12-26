@@ -3,7 +3,7 @@ package pages;
 import elements.Input;
 import elements.TextArea;
 import lombok.extern.log4j.Log4j2;
-import models.Suite;
+import models.TestSuite;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -56,7 +56,7 @@ public class CreateSuitePage extends BasePage {
         return this;
     }
 
-    public CreateSuitePage populateForm(Suite model) {
+    public CreateSuitePage populateForm(TestSuite model) {
         setSuiteTitle(model.getTitle());
         setSuiteDescription(model.getDescription());
         setSuitePreconditions(model.getPreconditions());

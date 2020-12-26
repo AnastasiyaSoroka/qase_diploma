@@ -1,9 +1,11 @@
 package tests;
 
+import io.qameta.allure.Feature;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+@Feature("Login")
 public class LoginTest extends BaseTest {
 
     @DataProvider(name = "incorrectLoginData")

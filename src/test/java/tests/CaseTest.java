@@ -1,18 +1,21 @@
 package tests;
 
-import models.Case;
+import adapters.ProjectsAdapter;
+import io.qameta.allure.Feature;
+import models.TestCase;
 import models.Project;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import utils.RandomString;
 
+@Feature("TestCases")
 public class CaseTest extends BaseTest {
 
     RandomString randomString = new RandomString();
-
     Project project;
-    Case caseModel;
+    TestCase caseModel;
+    ProjectsAdapter projectsAdapter = new ProjectsAdapter();
 
     @BeforeMethod(description = "Login and Create new project")
     public void createNewProject() {
@@ -21,16 +24,14 @@ public class CaseTest extends BaseTest {
                 .code(randomString.StringRandom(4))
                 .description(randomString.StringRandom(4))
                 .build();
-
+        projectsAdapter.post(project);
         loginSteps.validLogin(USERNAME, PASSWORD);
-        projectsSteps.clickCreateNewProject();
-        createProjectSteps.populateNewProjectFormFull(project);
         projectSteps.getProjectName(project.getCode());
     }
 
     @Test(description = "Verify that New Case was created")
     public void checkNewProjectCreated() {
-        caseModel = Case.builder()
+        caseModel = TestCase.builder()
                 .title(randomString.StringRandom(4))
                 .status("Actual")
                 .description("asdasdasd dfyg")
