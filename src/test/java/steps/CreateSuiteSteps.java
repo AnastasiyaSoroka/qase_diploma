@@ -2,7 +2,7 @@ package steps;
 
 import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
-import models.Suite;
+import models.TestSuite;
 import org.openqa.selenium.WebDriver;
 import pages.CreateSuitePage;
 
@@ -15,7 +15,7 @@ public class CreateSuiteSteps {
     }
 
     @Step("Populating Create New Suite form with name, description and preconditions")
-    public CreateSuiteSteps populateNewSuiteFormFull(Suite model) {
+    public CreateSuiteSteps populateNewSuiteFormFull(TestSuite model) {
         createSuitePage.isPageOpened().populateForm(model);
         return this;
     }

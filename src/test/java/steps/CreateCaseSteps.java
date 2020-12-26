@@ -2,7 +2,7 @@ package steps;
 
 import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
-import models.Case;
+import models.TestCase;
 import org.openqa.selenium.WebDriver;
 import pages.CreateCasePage;
 
@@ -15,7 +15,7 @@ public class CreateCaseSteps {
     }
 
     @Step("Populating Create New Case form")
-    public CreateCaseSteps populateNewSuiteFormFull(Case model) {
+    public CreateCaseSteps populateNewSuiteFormFull(TestCase model) {
         createCasePage.isPageOpened().populateForm(model);
         return this;
     }
