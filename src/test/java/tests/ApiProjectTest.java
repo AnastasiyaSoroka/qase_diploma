@@ -13,7 +13,7 @@ import org.testng.annotations.Test;
 import utils.RandomString;
 import utils.TestListener;
 
-@Feature("Projects")
+@Feature("API")
 @Log4j2
 @Listeners(TestListener.class)
 public class ApiProjectTest {
