@@ -1,6 +1,7 @@
 package models;
 
 import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -10,15 +11,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Project {
+public class Defects {
+    @SerializedName("total")
     @Expose
-    private String title;
+    private Integer total;
+    @SerializedName("open")
     @Expose
-    private String code;
-    @Expose
-    private String description;
-    @Expose
-    private String access;
-    @Expose
-    private Object group;
+    private Integer open;
 }
