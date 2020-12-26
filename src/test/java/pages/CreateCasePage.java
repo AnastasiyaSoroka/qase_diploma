@@ -4,7 +4,7 @@ import elements.Input;
 import elements.InputWithPane;
 import elements.InputWithSearch;
 import lombok.extern.log4j.Log4j2;
-import models.Case;
+import models.TestCase;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -30,7 +30,6 @@ public class CreateCasePage extends BasePage {
         endpoint = String.format(endpointPattern, code);
     }
 
-
     public CreateCasePage openPage() {
         log.info("Create Case page URL is " + URLAPP + endpoint);
         driver.get(URLAPP + endpoint);
@@ -47,7 +46,7 @@ public class CreateCasePage extends BasePage {
         return this;
     }
 
-    public CreateCasePage populateForm(Case model) {
+    public CreateCasePage populateForm(TestCase model) {
         setSuiteTitle(model.getTitle());
         new InputWithPane(driver, "Description").write(model.getDescription());
         new InputWithSearch(driver, "status").selectWithSearch(model.getStatus());
